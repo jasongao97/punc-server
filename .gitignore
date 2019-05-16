@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+
+# Configs
+config.js
+
+# VS Code
+.vscode/
+
+# Mac Garbage
+.DS_store
+
+# Jest
+coverage/
