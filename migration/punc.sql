@@ -36,7 +36,7 @@ CREATE TABLE `arrangements` (
 DROP TABLE IF EXISTS `attendances`;
 CREATE TABLE `attendances` (
   `employee_id` int(11) NOT NULL,
-  `date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `arrive_at` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `leave_at` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_overtime` tinyint(4) NOT NULL,
