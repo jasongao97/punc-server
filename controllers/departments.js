@@ -14,9 +14,20 @@ module.exports = {
     const department = await Department.query().findById(id);
     ctx.state.data = department;
   },
+  post: async (ctx) => {
+    const { name } = ctx.request.body;
+    const department = await Department.query().insert({ name });
+    ctx.state.code = 201;
+    ctx.state.data = department;
+  },
   putDirector: async (ctx) => {
-    const { id, directorId } = ctx.request.body;
-    const department = await Department.query().findById(id).patch({ directorId });
+    const { id, name } = ctx.request.body;
+    const department = await Department.query().findById(id).patch({ name });
+    ctx.state.data = department;
+  },
+  deleteById: async (ctx) => {
+    const { id } = ctx.params;
+    const department = await Department.query().deleteById(id);
     ctx.state.data = department;
   }
 };
