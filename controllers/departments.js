@@ -13,5 +13,10 @@ module.exports = {
 
     const department = await Department.query().findById(id);
     ctx.state.data = department;
+  },
+  putDirector: async (ctx) => {
+    const { id, directorId } = ctx.request.body;
+    const department = await Department.query().findById(id).patch({ directorId });
+    ctx.state.data = department;
   }
 };

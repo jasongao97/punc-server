@@ -6,7 +6,7 @@
   "scripts": {
     "start": "pm2 start process.json",
     "deve": "DEBUG=* node ./app.js",
-    "dev": "set DEBUG='*' & node ./app.js"
+    "dev": "set DEBUG=* & node ./app.js"
   },
   "author": "",
   "license": "ISC",
