@@ -1,14 +1,22 @@
 type Query {
   isLogin: Boolean!
+  me: Employee
   department(id: ID!): Department
 }
 
 type Department {
   id: ID!
-  name: String
+  name: String!
+}
+
+type Employee {
+  id: ID!
+  name: String!
+  birthday: String
+  department: Department!
 }
 
 type Mutation {
-  login(username: String!, pwd: String!): Boolean!
-  signup(username: String!, pwd: String!): Boolean!
+  login(name: String!, pwd: String!): Boolean!
+  signup(name: String!, pwd: String!): Boolean!
 }

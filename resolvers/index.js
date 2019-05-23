@@ -1,30 +1,37 @@
 const bcrypt = require('bcryptjs');
 const departments = require('../controllers/departments');
+const employees = require('../controllers/employees');
 
 module.exports = {
   Query: {
-    department: (parent, { id }) => departments.getById(id),
     isLogin: (parent, args, { ctx }) => typeof ctx.session.user !== 'undefined',
+    me: (parent, args, { ctx }) => ctx.session.user,
+    department: (parent, { id }) => departments.getById(id),
+  },
+  Employee: {
+    department: ({ departmentId }) => departments.getById(departmentId),
   },
   Mutation: {
-    signup: async (parent, { username, pwd }, { data }) => {
-      if (data[username]) {
-        throw new Error('Another User with same username exists.');
+    signup: async (parent, { name, pwd }) => {
+      if (await employees.getByName(name)) {
+        throw new Error('Employee already exists.');
       }
 
-      // eslint-disable-next-line no-param-reassign
-      data[username] = {
-        pwd: await bcrypt.hashSync(pwd, 10),
+      const employee = {
+        name,
+        birthday: '1997-09-26',
+        password: bcrypt.hashSync(pwd, 10),
+        departmentId: 1,
       };
-
+      await employees.insert(employee);
       return true;
     },
-    login: async (parent, { username, pwd }, { ctx, data }) => {
-      const user = data[username];
-      if (user) {
-        if (await bcrypt.compareSync(pwd, user.pwd)) {
+    login: async (parent, { name, pwd }, { ctx }) => {
+      const employee = await employees.getByName(name);
+      if (employee) {
+        if (await bcrypt.compareSync(pwd, employee.password)) {
           ctx.session.user = {
-            ...user,
+            ...employee,
           };
           return true;
         }
