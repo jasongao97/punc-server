@@ -17,8 +17,8 @@ class Manager extends Model {
       properties: {
         id: { type: 'integer' },
         name: { type: 'string' },
-        passwd: { type: 'string' }
-      }
+        passwd: { type: 'string' },
+      },
     };
   }
 }

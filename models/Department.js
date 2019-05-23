@@ -17,8 +17,8 @@ class Department extends Model {
       properties: {
         id: { type: 'integer' },
         name: { type: 'string' },
-        director_id: { type: 'integer' }
-      }
+        director_id: { type: 'integer' },
+      },
     };
   }
 }

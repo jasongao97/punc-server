@@ -4,11 +4,11 @@
 const compose = require('koa-compose');
 const convert = require('koa-convert');
 const bodyParser = require('koa-bodyparser');
-const logger = require('koa-logger');
-const response = require('./response');
+const session = require('koa-session2');
 
 module.exports = () => compose([
-  response,
-  convert(logger()),
-  convert(bodyParser())
+  convert(bodyParser()),
+  session({
+    key: 'punc',
+  }),
 ]);

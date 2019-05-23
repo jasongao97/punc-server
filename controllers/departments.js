@@ -4,14 +4,12 @@
 const Department = require('../models/Department');
 
 module.exports = {
-  getAll: async (ctx) => {
+  getAll: async () => {
     const departments = await Department.query();
-    ctx.state.data = departments;
+    return departments;
   },
-  getById: async (ctx) => {
-    const { id } = ctx.params;
-
+  getById: async (id) => {
     const department = await Department.query().findById(id);
-    ctx.state.data = department;
-  }
+    return department;
+  },
 };
