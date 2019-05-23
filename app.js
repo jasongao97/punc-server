@@ -8,7 +8,7 @@ const debug = require('debug')('koa');
 const config = require('./config');
 const middleware = require('./middlewares');
 
-const typeDefs = importSchema('./schema.graphql');
+const typeDefs = importSchema('./schema/schema.graphql');
 const resolvers = require('./resolvers');
 
 // 实例化 Koa
