@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "pm2 start process.json",
-    "deve": "NODE_ENV=development DEBUG=* node ./app.js",
-    "dev": "set NODE_ENV=development & set DEBUG='*' & node ./app.js"
+    "deve": "NODE_ENV=development DEBUG=* node ./bin/www",
+    "dev": "set NODE_ENV=development & set DEBUG='*' & node ./bin/www"
   },
   "author": "",
   "license": "ISC",

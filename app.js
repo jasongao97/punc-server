@@ -4,7 +4,6 @@ const { Model } = require('objection');
 const { ApolloServer } = require('apollo-server-koa');
 const { importSchema } = require('graphql-import');
 
-const debug = require('debug')('koa');
 const config = require('./config');
 const middleware = require('./middlewares');
 
@@ -44,4 +43,4 @@ const server = new ApolloServer({
 server.applyMiddleware({ app, path: '/', cors });
 
 // 启动程序，监听端口
-app.listen(config.port, () => debug('listening on port %o', config.port));
+module.exports = app;
