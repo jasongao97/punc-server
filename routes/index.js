@@ -33,6 +33,8 @@ router.get('/logout', (ctx) => {
 // --- 一级路由 --- //
 // 部门接口
 router.use(`${BASE_URL}/departments`, require('./departments'));
+// 员工接口
+router.use(`${BASE_URL}/employees`, require('./employees'));
 
 router.all('*', (ctx) => {
   ctx.status = 404;

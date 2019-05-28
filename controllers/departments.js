@@ -21,8 +21,9 @@ module.exports = {
     ctx.state.data = department;
   },
   putDirector: async (ctx) => {
-    const { id, name } = ctx.request.body;
-    const department = await Department.query().findById(id).patch({ name });
+    const { id, directorId } = ctx.request.body;
+    const department = await Department.query().patchAndFetchById(id, { directorId });
+    console.log(department);
     ctx.state.data = department;
   },
   deleteById: async (ctx) => {
