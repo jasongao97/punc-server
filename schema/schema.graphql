@@ -17,6 +17,6 @@ type Employee {
 }
 
 type Mutation {
-  login(name: String!, pwd: String!): Boolean!
-  signup(name: String!, pwd: String!): Boolean!
+  login(name: String!, pwd: String!): String
+  signup(name: String!, pwd: String!): String
 }

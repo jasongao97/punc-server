@@ -1,7 +1,7 @@
 /*
  * departments 部门
  */
-const Department = require('../models/Department');
+const { Department } = require('../models');
 
 module.exports = {
   getAll: async () => {

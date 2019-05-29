@@ -1,7 +1,7 @@
 /*
  * departments 员工
  */
-const Employee = require('../models/Employee');
+const { Employee } = require('../models');
 
 module.exports = {
   getById: async (id) => {
@@ -12,7 +12,10 @@ module.exports = {
     const employee = await Employee.query().findOne('name', '=', name);
     return employee;
   },
-  insert: async (object) => {
+  new: async (object) => {
+    if (await Employee.query().findOne('name', '=', object.name)) {
+      throw new Error('Employee already exists.');
+    }
     const employee = await Employee.query().insert(object);
     return employee;
   },

@@ -4,11 +4,11 @@
 const compose = require('koa-compose');
 const convert = require('koa-convert');
 const bodyParser = require('koa-bodyparser');
-const session = require('koa-session2');
+const jwt = require('koa-jwt');
+const { secret } = require('../config');
 
 module.exports = () => compose([
   convert(bodyParser()),
-  session({
-    key: 'punc',
-  }),
+  // auth,
+  jwt({ secret, passthrough: true }),
 ]);
