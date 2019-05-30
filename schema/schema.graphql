@@ -2,7 +2,7 @@ type Query {
   isLogin: Boolean!
   me: Employee
   departments: [Department!]
-  department(id: ID!): Department
+  overtimes: [Overtime!]
 }
 
 type Department {
@@ -10,6 +10,7 @@ type Department {
   name: String!
   employees: [Employee!]
   director: Employee
+  leaves: [Leave!]
 }
 
 type Employee {
@@ -17,6 +18,44 @@ type Employee {
   name: String!
   birthday: String
   department: Department!
+  arrangements: [Arrangement!]
+  tempArrangements: [TempArrangement!]
+  
+  attendances(startDate: String, endDate: String): [Attendance!]
+}
+
+type Arrangement {
+  startTime: String!
+  endTime: String!
+}
+
+type TempArrangement {
+  startTime: String!
+  endTime: String!
+  startDate: String!
+  endDate: String!
+}
+
+type Attendance {
+  date: String!
+  arriveAt: String!
+  leaveAt: String!
+  status: Int!
+  reason: String!
+}
+
+type Leave {
+  type: Int!
+  status: Int!
+  startDate: String!
+  endDate: String!
+  reason: String!
+}
+
+type Overtime {
+  date: String!
+  startTime: String!
+  endTime: String!
 }
 
 type Mutation {

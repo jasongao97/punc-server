@@ -1,4 +1,4 @@
-const { departments, employees } = require('../controllers');
+const { departments, employees, overtimes } = require('../controllers');
 
 const loginMutation = require('./mutations/login');
 
@@ -12,7 +12,7 @@ module.exports = {
       return null;
     },
     departments: () => departments.getAll(),
-    department: (parent, { id }) => departments.getById(id),
+    overtimes: () => overtimes.getAll(),
   },
   Department: {
     director: ({ directorId }) => employees.getById(directorId),
