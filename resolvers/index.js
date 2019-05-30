@@ -1,6 +1,6 @@
 const { departments, employees } = require('../controllers');
 
-const userMutation = require('./mutations/user');
+const loginMutation = require('./mutations/login');
 
 module.exports = {
   Query: {
@@ -11,12 +11,17 @@ module.exports = {
       }
       return null;
     },
+    departments: () => departments.getAll(),
     department: (parent, { id }) => departments.getById(id),
+  },
+  Department: {
+    director: ({ directorId }) => employees.getById(directorId),
+    employees: ({ id }) => employees.getByDepartment(id),
   },
   Employee: {
     department: ({ departmentId }) => departments.getById(departmentId),
   },
   Mutation: {
-    ...userMutation,
+    ...loginMutation,
   },
 };

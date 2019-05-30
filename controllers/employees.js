@@ -12,10 +12,11 @@ module.exports = {
     const employee = await Employee.query().findOne('name', '=', name);
     return employee;
   },
-  new: async (object) => {
-    if (await Employee.query().findOne('name', '=', object.name)) {
-      throw new Error('Employee already exists.');
-    }
+  getByDepartment: async (departmentId) => {
+    const employees = await Employee.query().where('department_id', '=', departmentId);
+    return employees;
+  },
+  create: async (object) => {
     const employee = await Employee.query().insert(object);
     return employee;
   },
