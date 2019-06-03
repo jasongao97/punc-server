@@ -23,8 +23,7 @@
     "koa-compose": "^4.1.0",
     "koa-convert": "^1.2.0",
     "koa-jwt": "^3.5.1",
-    "mysql": "^2.16.0",
-    "objection": "^1.6.8"
+    "mysql": "^2.16.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

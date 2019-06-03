@@ -1,15 +1,15 @@
 /*
  * departments 部门
  */
-const { Department } = require('../models');
+const db = require('../db');
 
 module.exports = {
   getAll: async () => {
-    const departments = await Department.query();
+    const departments = await db('departments').select();
     return departments;
   },
   getById: async (id) => {
-    const department = await Department.query().findById(id);
-    return department;
+    const departments = await db('departments').select().where('id', id);
+    return departments[0];
   },
 };

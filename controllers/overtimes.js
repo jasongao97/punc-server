@@ -1,11 +1,11 @@
 /*
  * overtimes 全体加班
  */
-const { Overtime } = require('../models');
+const db = require('../db');
 
 module.exports = {
   getAll: async () => {
-    const overtimes = await Overtime.query();
+    const overtimes = await db('overtimes').select();
     return overtimes;
   },
 };
