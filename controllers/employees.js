@@ -20,4 +20,11 @@ module.exports = {
     const employee = await db('employees').insert(object);
     return employee;
   },
+  update: async (id, object) => {
+    const employee = await db('employees').where('id', id).update(object);
+    return employee;
+  },
+  delete: async (id) => {
+    await db('employees').where('id', id).delete();
+  },
 };

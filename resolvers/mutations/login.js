@@ -1,15 +1,21 @@
 const bcrypt = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
-const { employees } = require('../../controllers');
+const { employees, managers } = require('../../controllers');
 const { secret } = require('../../config');
 
 module.exports = {
-  login: async (parent, { name, pwd }) => {
-    const employee = await employees.getByName(name);
-    if (employee) {
-      if (await bcrypt.compareSync(pwd, employee.password)) {
+  login: async (parent, { name, pwd, type }) => {
+    let user = {};
+    if (type === 0) {
+      user = await employees.getByName(name);
+    } else {
+      user = await managers.getByName(name);
+    }
+
+    if (user) {
+      if (await bcrypt.compareSync(pwd, user.password)) {
         return jsonwebtoken.sign(
-          { id: employee.id, name },
+          { id: user.id, name, type },
           secret,
           { expiresIn: '1d' },
         );
