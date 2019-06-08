@@ -16,7 +16,7 @@ module.exports = {
     if (user) {
       if (await bcrypt.compareSync(pwd, user.password)) {
         return jsonwebtoken.sign(
-          { id: user.id, name, t },
+          { id: user.id, name, type: t },
           secret,
           { expiresIn: '1d' },
         );
