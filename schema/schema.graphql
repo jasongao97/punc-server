@@ -59,7 +59,7 @@ type Overtime {
 }
 
 type Mutation {
-  login(name: String!, pwd: String!, type: Int!): String
+  login(name: String!, pwd: String!, type: Int): String
   createEmployee(info: EmployeeInput!): Boolean
   updateEmployee(id: Int!, info: EmployeeInput!): Boolean
   deleteEmployee(id: Int!): Boolean

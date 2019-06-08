@@ -5,8 +5,9 @@ const { secret } = require('../../config');
 
 module.exports = {
   login: async (parent, { name, pwd, type }) => {
+    const t = type || 0;
     let user = {};
-    if (type === 0) {
+    if (t === 0) {
       user = await employees.getByName(name);
     } else {
       user = await managers.getByName(name);
@@ -15,7 +16,7 @@ module.exports = {
     if (user) {
       if (await bcrypt.compareSync(pwd, user.password)) {
         return jsonwebtoken.sign(
-          { id: user.id, name, type },
+          { id: user.id, name, t },
           secret,
           { expiresIn: '1d' },
         );
