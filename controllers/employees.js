@@ -17,12 +17,10 @@ module.exports = {
     return employees;
   },
   create: async (object) => {
-    const employee = await db('employees').insert(object);
-    return employee;
+    await db('employees').insert(object);
   },
   update: async (id, object) => {
-    const employee = await db('employees').where('id', id).update(object);
-    return employee;
+    await db('employees').where('id', id).update(object);
   },
   delete: async (id) => {
     await db('employees').where('id', id).delete();

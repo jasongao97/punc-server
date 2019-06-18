@@ -30,6 +30,7 @@ type Arrangement {
 }
 
 type TempArrangement {
+  id: ID!
   startTime: String!
   endTime: String!
   startDate: String!
@@ -60,9 +61,24 @@ type Overtime {
 
 type Mutation {
   login(name: String!, pwd: String!, type: Int): String
+
   createEmployee(info: EmployeeInput!): Boolean
-  updateEmployee(id: Int!, info: EmployeeInput!): Boolean
-  deleteEmployee(id: Int!): Boolean
+  updateEmployee(id: ID!, info: EmployeeUpdate!): Boolean
+  deleteEmployee(id: ID!): Boolean
+  updateDirector(departmentId: ID!, directorId: ID!): Boolean
+  createOvertime(info: OvertimeInput): Boolean
+
+  updateArrangements(employeeId: ID!, arrangements: [ArrangementInput!]): Boolean
+  createTempArrangement(employeeId: ID!, info: TempArrangementInput!): Boolean
+  updateTempArrangement(id: ID!, info: TempArrangementUpdate!): Boolean
+  deleteTempArrangement(id: ID!): Boolean
+  approveLeave(id: ID!, status: Int!): Boolean
+  approveOvertime(id: ID!, status: Int!): Boolean
+
+  applyLeave(info: LeaveInput): Boolean
+  applyOvertime(reason: String!): Boolean
+  check(type: Int!): Boolean
+  updateInformation(info: EmployeeInput): Boolean
 }
 
 input EmployeeInput {
@@ -70,4 +86,44 @@ input EmployeeInput {
   birthday: String
   password: String!
   departmentId: Int!
+}
+
+input EmployeeUpdate {
+  name: String
+  birthday: String
+  password: String
+  departmentId: Int
+}
+
+input ArrangementInput {
+  day: Int!
+  startTime: String!
+  endTime: String!
+}
+
+input TempArrangementInput {
+  startTime: String!
+  endTime: String!
+  startDate: String!
+  endDate: String!
+}
+
+input TempArrangementUpdate {
+  startTime: String
+  endTime: String
+  startDate: String
+  endDate: String
+}
+
+input LeaveInput {
+  type: Int!
+  startDate: String!
+  endDate: String!
+  reason: String!
+}
+
+input OvertimeInput {
+  date: String!
+  startTime: String!
+  endTime: String!
 }

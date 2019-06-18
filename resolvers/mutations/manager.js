@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const { employees } = require('../../controllers');
+const { employees, departments, overtimes } = require('../../controllers');
 
 module.exports = {
   createEmployee: async (parent, { info }) => {
@@ -23,6 +23,19 @@ module.exports = {
   },
   deleteEmployee: async (parent, { id }) => {
     await employees.delete(id);
+    return true;
+  },
+  updateDirector: async (parent, { departmentId, directorId }) => {
+    await departments.updateDirector(departmentId, directorId);
+    return true;
+  },
+  createOvertime: async (parent, { info }) => {
+    const newOve = {
+      start_time: info.startTime,
+      end_time: info.endTime,
+      date: info.date,
+    };
+    await overtimes.create(newOve);
     return true;
   },
 };

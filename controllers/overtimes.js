@@ -8,4 +8,7 @@ module.exports = {
     const overtimes = await db('overtimes').select();
     return overtimes;
   },
+  create: async (object) => {
+    await db('overtimes').insert(object);
+  },
 };

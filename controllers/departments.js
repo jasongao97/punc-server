@@ -12,4 +12,7 @@ module.exports = {
     const departments = await db('departments').select().where('id', id);
     return departments[0];
   },
+  updateDirector: async (departmentId, directorId) => {
+    await db('departments').where('id', departmentId).update('director_id', directorId);
+  },
 };

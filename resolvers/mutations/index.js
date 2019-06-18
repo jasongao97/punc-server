@@ -1,7 +1,9 @@
 const login = require('./login');
-const employee = require('./employee');
+const manager = require('./manager');
+const director = require('./director');
 
 module.exports = {
   ...login,
-  ...employee,
+  ...manager,
+  ...director,
 };
