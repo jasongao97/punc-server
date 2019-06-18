@@ -1,4 +1,9 @@
-const { arrangements, tempArrangements } = require('../../controllers');
+const {
+  arrangements,
+  tempArrangements,
+  leaves,
+  attendances,
+} = require('../../controllers');
 
 module.exports = {
   updateArrangements: async (parent, req) => {
@@ -37,5 +42,11 @@ module.exports = {
   deleteTempArrangement: async (parent, { id }) => {
     await tempArrangements.delete(id);
     return true;
+  },
+  approveLeave: async (parent, { id, status }) => {
+    await leaves.updateStatus(id, status);
+  },
+  approveOvertime: async (parent, { id, status }) => {
+    await attendances.updateStatus(id, status);
   },
 };

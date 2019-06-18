@@ -23,4 +23,9 @@ module.exports = {
 
     return attendances;
   },
+  updateStatus: async (id, status) => {
+    await db('attendances').select('id', id).update({
+      status,
+    });
+  },
 };

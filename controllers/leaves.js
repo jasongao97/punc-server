@@ -9,4 +9,9 @@ module.exports = {
       .where('employees.department_id', departmentId);
     return leaves;
   },
+  updateStatus: async (id, status) => {
+    await db('leaves').select('id', id).update({
+      status,
+    });
+  },
 };
