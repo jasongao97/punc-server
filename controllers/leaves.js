@@ -14,4 +14,7 @@ module.exports = {
       status,
     });
   },
+  create: async (object) => {
+    await db('leaves').insert(object);
+  }
 };

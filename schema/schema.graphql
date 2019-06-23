@@ -73,12 +73,12 @@ type Mutation {
   updateTempArrangement(id: ID!, info: TempArrangementUpdate!): Boolean
   deleteTempArrangement(id: ID!): Boolean
   approveLeave(id: ID!, status: Int!): Boolean
-  approveOvertime(id: ID!, status: Int!): Boolean
+  approveOvertime(employeeId: ID!, date: String!, status: Int!): Boolean
 
   applyLeave(info: LeaveInput): Boolean
   applyOvertime(reason: String!): Boolean
   check(type: Int!): Boolean
-  updateInformation(info: EmployeeInput): Boolean
+  updateInformation(info: EmployeeUpdateMin): Boolean
 }
 
 input EmployeeInput {
@@ -93,6 +93,11 @@ input EmployeeUpdate {
   birthday: String
   password: String
   departmentId: Int
+}
+
+input EmployeeUpdateMin {
+  birthday: String
+  password: String
 }
 
 input ArrangementInput {

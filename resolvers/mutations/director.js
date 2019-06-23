@@ -46,7 +46,7 @@ module.exports = {
   approveLeave: async (parent, { id, status }) => {
     await leaves.updateStatus(id, status);
   },
-  approveOvertime: async (parent, { id, status }) => {
-    await attendances.updateStatus(id, status);
+  approveOvertime: async (parent, { employeeId, date, status }) => {
+    await attendances.updateStatus(employeeId, date, status);
   },
 };
