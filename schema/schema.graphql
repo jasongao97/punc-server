@@ -21,6 +21,7 @@ type Employee {
   arrangements: [Arrangement!]
   tempArrangements: [TempArrangement!]
   attendances(startDate: String, endDate: String): [Attendance!]
+  leaves: [Leave!]
 }
 
 type Arrangement {
@@ -40,17 +41,19 @@ type TempArrangement {
 type Attendance {
   date: String!
   arriveAt: String!
-  leaveAt: String!
+  leaveAt: String
   status: Int!
-  reason: String!
+  reason: String
 }
 
 type Leave {
+  id: ID!
   type: Int!
   status: Int!
   startDate: String!
   endDate: String!
   reason: String!
+  employee: Employee!
 }
 
 type Overtime {

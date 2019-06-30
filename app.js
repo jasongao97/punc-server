@@ -15,7 +15,7 @@ const app = new Koa();
 app.use(middleware());
 
 const cors = {
-  origin: ['http://localhost:8888'],
+  origin: ['https://jgao.net'],
   credentials: true,
 };
 
